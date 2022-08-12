@@ -29,4 +29,5 @@ Backend for sending Web Push Notifications.
 
 ### Test
 
-Go to `http://localhost:8000/` to check if the app is running.
+1. Go to `http://localhost:8000/` to check if the app is running.
+2. Log into the terminal of docker-compose container of `web` service. And run `pytest`

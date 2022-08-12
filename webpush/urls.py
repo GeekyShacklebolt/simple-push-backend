@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import DefaultRouter
+from rest_framework.urlpatterns import include
 
-urlpatterns = [
+from webpush.notifications.api import NotificationViewSet
+
+default_router = DefaultRouter(trailing_slash=False)
+
+default_router.register("notifications", viewset=NotificationViewSet, basename="notifications")
+
+urlpatterns = default_router.urls
+
+urlpatterns += [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
 ]
