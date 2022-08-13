@@ -1,6 +1,6 @@
 ### 13th Aug, 2022
 
-* Added placeholder endpoint for subscription creation API
+* Added endpoint for subscription creation API
 * Spawned up subscriptions app
 
 ### 12th Aug, 2022

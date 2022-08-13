@@ -19,10 +19,12 @@ from rest_framework.routers import DefaultRouter
 from rest_framework.urlpatterns import include
 
 from webpush.notifications.api import NotificationViewSet
+from webpush.subscriptions.api import SubscriptionViewSet
 
 default_router = DefaultRouter(trailing_slash=False)
 
 default_router.register("notifications", viewset=NotificationViewSet, basename="notifications")
+default_router.register("subscriptions", viewset=SubscriptionViewSet, basename="subscriptions")
 
 urlpatterns = default_router.urls
 
