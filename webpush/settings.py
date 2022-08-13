@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_extensions',
     'webpush.notifications',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'webpush.urls'
@@ -134,3 +136,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CELERY_BROKER_URL = 'amqp://rabbitmq:rabbitmq@rabbitmq:5672/'
+CORS_ORIGIN_ALLOW_ALL = True
