@@ -6,14 +6,20 @@ from django.db import models
 class Subscription(models.Model):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
     push_service_url = models.CharField('Push Service URL', null=False, blank=False, max_length=200)
-    subscription_auth = models.CharField(
-        'Subscription Auth',
+    subscription_public_key = models.CharField(
+        'Subscription Public Key',
         null=False,
         blank=False,
         max_length=200,
-        help_text="p256dh client key"
+        help_text="P256DH Key"
     )
-    subscription_secret = models.CharField('Subscription Secret', null=False, blank=False, max_length=100)
+    subscription_auth = models.CharField(
+        'Subscription Secret',
+        null=False,
+        blank=False,
+        max_length=100,
+        help_text="Auth Key"
+    )
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
 
     class Meta:

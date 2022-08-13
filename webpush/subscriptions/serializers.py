@@ -8,8 +8,8 @@ class SubscriptionSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "push_service_url",
+            "subscription_public_key",
             "subscription_auth",
-            "subscription_secret",
             "created_at",
         ]
         read_only_fields = [

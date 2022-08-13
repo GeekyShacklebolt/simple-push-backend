@@ -62,8 +62,8 @@ POST /api/subscriptions
 ```json
 {
   "push_service_url": "<https://some.pushservice.com/something-unique>",
-  "client_private_key": "BIPUL12DLfytvTajnryr2PRdAgXS3HGKiLqndGcJGabyhHheJYlNGCeXl1dn18gSJ1WAkAPIxr4gK0_dQds4yiI=",
-  "client_public_key": "FPssNDTKnInHVndSTdbKFw=="
+  "subscription_public_key": "BIPUL12DLfytvTajnryr2PRdAgXS3HGKiLqndGcJGabyhHheJYlNGCeXl1dn18gSJ1WAkAPIxr4gK0_dQds4yiI=",
+  "subscription_auth": "FPssNDTKnInHVndSTdbKFw=="
 }
 ```
 
@@ -75,8 +75,8 @@ Status: `201 Created`
 {
   "id": "070af5d3-03a1-4a38-9a75-5b76de8826d2",
   "push_service_url": "<https://some.pushservice.com/something-unique>",
-  "client_private_key": "BIPUL12DLfytvTajnryr2PRdAgXS3HGKiLqndGcJGabyhHheJYlNGCeXl1dn18gSJ1WAkAPIxr4gK0_dQds4yiI=",
-  "client_public_key": "FPssNDTKnInHVndSTdbKFw==",
+  "subscription_public_key": "BIPUL12DLfytvTajnryr2PRdAgXS3HGKiLqndGcJGabyhHheJYlNGCeXl1dn18gSJ1WAkAPIxr4gK0_dQds4yiI=",
+  "subscription_auth": "FPssNDTKnInHVndSTdbKFw==",
   "created_at": "2022-08-10T17:30:42Z"
 }
 ```
