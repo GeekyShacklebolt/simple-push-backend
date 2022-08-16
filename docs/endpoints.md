@@ -43,12 +43,12 @@ Status: `201 Created`
 **Parameters**
 
 
-| Field               | Type       | Required | Description                                              |
-|---------------------|------------|----------|----------------------------------------------------------|
-| push_service_url    | char (200) | yes      | Push Service Endpoint to make web push protocol requests |
-| subscription_auth   | char (200) | yes      | private "p256dh" client key from the subscription data   |
-| subscription_secret | char (100) | yes      | public "auth" client key from the subscription data      |
-|                     |            |          |                                                          |
+| Field                   | Type       | Required | Description                                              |
+|-------------------------|------------|----------|----------------------------------------------------------|
+| push_service_url        | char (200) | yes      | Push Service Endpoint to make web push protocol requests |
+| subscription_public_key | char (200) | yes      | public "p256dh" client key from the subscription data    |
+| subscription_auth       | char (100) | yes      | private "auth" client key from the subscription data     |
+|                         |            |          |                                                          |
 
 
 **Endpoint**
