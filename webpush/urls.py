@@ -23,8 +23,8 @@ from webpush.subscriptions.api import SubscriptionViewSet
 
 default_router = DefaultRouter(trailing_slash=False)
 
-default_router.register("notifications", viewset=NotificationViewSet, basename="notifications")
-default_router.register("subscriptions", viewset=SubscriptionViewSet, basename="subscriptions")
+default_router.register("api/notifications", viewset=NotificationViewSet, basename="notifications")
+default_router.register("api/subscriptions", viewset=SubscriptionViewSet, basename="subscriptions")
 
 urlpatterns = default_router.urls
 
