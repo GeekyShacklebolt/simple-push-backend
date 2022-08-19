@@ -1,6 +1,8 @@
 ### 19th Aug, 2022
 
-* Send push notification to all subscribers with the data directly received in API (`POST /api/notifications`).
+* Add API (`GET /api/notifications`) to fetch all available notifications from DB.
+* Save/Create new notifications in DB using API (`POST /api/notifications`)
+* Send push notification to all subscribers with the data directly received in API (`POST /api/notifications`)
 * Add celery tasks to make webpush request to all subscribers in background
 * Read settings env variable from .env file
 * Added WebPushClient class that wraps `pywebpush` library to make webpush requests

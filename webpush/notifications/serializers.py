@@ -1,6 +1,20 @@
+# Third party libraries
 from rest_framework import serializers
 
+# Local imports
+from .models import Notification
 
-class NotificationSerializer(serializers.Serializer):
-    title = serializers.CharField(max_length=50)
-    description = serializers.CharField(max_length=100)
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = [
+            "id",
+            "title",
+            "description",
+            "created_at",
+        ]
+        read_only_fields = [
+            "id",
+            "created_at",
+        ]
