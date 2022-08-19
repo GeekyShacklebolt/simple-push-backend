@@ -79,8 +79,8 @@ class WebPushClient(object):
                 return result
 
             logger.info(msg=f"Failed to make webpush request. '{result.text}'. {get_log_ci()}")
-            raise WebPushRequestException(f"Web Push Request Failed {result.text}.")
+            raise WebPushRequestException(f"Web Push Request Failed. {result.text}.")
 
         except WebPushException as exc:
             logger.info(msg=f"Failed to make webpush request due to exception {exc}. {get_log_ci()}")
-            raise WebPushRequestException(f"Web Push Request Failed: {exc}")
+            raise WebPushRequestException(f"Web Push Request Failed. {exc}")

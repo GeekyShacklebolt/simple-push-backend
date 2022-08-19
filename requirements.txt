@@ -14,3 +14,4 @@ pywebpush==1.14.0  # https://github.com/web-push-libs/pywebpush
 
 ## Testing
 pytest-django==4.5.2
+pytest-cov==3.0.0
