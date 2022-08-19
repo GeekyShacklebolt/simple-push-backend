@@ -1,5 +1,6 @@
 ### 19th Aug
 
+* Add celery tasks to make webpush request to all subscribers in background
 * Read settings env variable from .env file
 * Added WebPushClient class that wraps `pywebpush` library to make webpush requests
 

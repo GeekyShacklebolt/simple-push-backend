@@ -40,3 +40,5 @@ services:
     depends_on:
       - web
       - rabbitmq
+    environment:
+      - DB_HOST=db

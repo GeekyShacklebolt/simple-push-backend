@@ -9,8 +9,8 @@ class SubscriptionTest(APITestCase):
         url = reverse("subscriptions-list")
         data = {
             "push_service_url": "https://some.pushservice.com/test",
-            "subscription_public_key": "BIPUL12DLfytvTajnryr2PRdAgXS3HGKiLqndGcJGabyhHheJYlNGCeXl1dn18gSJ1WAkAPIxr4gK0_dQds4yiI=",
-            "subscription_auth": "FPssNDTKnInHVndSTdbKFw==",
+            "public_key": "BIPUL12DLfytvTajnryr2PRdAgXS3HGKiLqndGcJGabyhHheJYlNGCeXl1dn18gSJ1WAkAPIxr4gK0_dQds4yiI=",
+            "auth_key": "FPssNDTKnInHVndSTdbKFw==",
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
