@@ -3,9 +3,9 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 
-class NotificationTest(APITestCase):
+class SubscriptionTest(APITestCase):
 
-    def test_accepting_notification_data(self):
+    def test_create_subscription_api(self):
         url = reverse("subscriptions-list")
         data = {
             "push_service_url": "https://some.pushservice.com/test",
