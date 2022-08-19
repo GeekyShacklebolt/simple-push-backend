@@ -13,8 +13,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -136,5 +140,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CELERY_BROKER_URL = 'amqp://rabbitmq:rabbitmq@rabbitmq:5672/'
+
+# Added Settings
 CORS_ORIGIN_ALLOW_ALL = True
+CELERY_BROKER_URL = env("CELERY_BROKER_URL", default='amqp://rabbitmq:rabbitmq@rabbitmq:5672/')
+VAPID = {
+    "PRIVATE_KEY": env("VAPID_PRIVATE_KEY"),
+    "EMAIL": env("VAPID_EMAIL_CLAIM"),
+}
+NOTIFICATION_EXPIRE_AFTER_MINS = env.int("NOTIFICATION_EXPIRE_AFTER_MINS")
