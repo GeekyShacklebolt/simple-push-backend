@@ -13,8 +13,8 @@ class SubscriptionAdmin(admin.ModelAdmin):
         ('Push Subscription Details', {
             'fields': (
                 'push_service_url',
-                'subscription_public_key',
-                'subscription_auth',
+                "public_key",
+                "auth_key",
             )
         }),
         ('Other details', {
@@ -27,8 +27,8 @@ class SubscriptionAdmin(admin.ModelAdmin):
     readonly_fields = [
         "id",
         "push_service_url",
-        "subscription_public_key",
-        "subscription_auth",
+        "public_key",
+        "auth_key",
         "created_at",
     ]
 
