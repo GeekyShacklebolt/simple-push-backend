@@ -1,5 +1,6 @@
-### 19th Aug
+### 19th Aug, 2022
 
+* Send push notification to all subscribers with the data directly received in API (`POST /api/notifications`).
 * Add celery tasks to make webpush request to all subscribers in background
 * Read settings env variable from .env file
 * Added WebPushClient class that wraps `pywebpush` library to make webpush requests
