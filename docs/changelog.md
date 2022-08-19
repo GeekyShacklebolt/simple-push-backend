@@ -1,3 +1,8 @@
+### 19th Aug
+
+* Read settings env variable from .env file
+* Added WebPushClient class that wraps `pywebpush` library to make webpush requests
+
 ### 13th Aug, 2022
 
 * Added endpoint for subscription creation API

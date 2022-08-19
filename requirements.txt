@@ -1,7 +1,17 @@
+## Core
 Django==4.1
-psycopg2==2.9.3
-celery==5.2.7
 djangorestframework==3.13.1
-pytest-django==4.5.2
 django-extensions==3.2.0
 django-cors-headers==3.13.0
+django-environ==0.9.0
+psycopg2==2.9.3
+
+## Async
+celery==5.2.7
+
+## Push Notification
+pywebpush==1.14.0  # https://github.com/web-push-libs/pywebpush
+
+## Testing
+pytest-django==4.5.2
+pytest-cov==3.0.0
