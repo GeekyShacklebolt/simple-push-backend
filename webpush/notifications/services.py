@@ -1,7 +1,9 @@
 
 
-def prepare_notification_data(request_data):
-    """Temporary method to prepare notification data on the go. At the completion of Milestone 4, notification to
-    trigger would be configurable via dashboard
+def prepare_notification_data(notification_obj):
+    """Method to prepare data for notification to display
+
+    :param notification_obj: Notification model object
+    :return: Data to display in the notification
     """
-    return f"{request_data['title']} - {request_data['description']}"
+    return f"{notification_obj.title} - {notification_obj.description}"
