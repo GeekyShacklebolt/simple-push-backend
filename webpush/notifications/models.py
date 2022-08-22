@@ -12,6 +12,10 @@ class Notification(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
 
     class Meta:
+        unique_together = (
+            'title',
+            'description',
+        )
         verbose_name = 'notification'
         verbose_name_plural = 'notifications'
         ordering = (
