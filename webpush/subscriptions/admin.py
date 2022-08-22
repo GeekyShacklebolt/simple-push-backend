@@ -5,23 +5,23 @@ from .models import Subscription
 
 class SubscriptionAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Identification', {
-            'fields': (
-                'id',
-            )
-        }),
-        ('Push Subscription Details', {
-            'fields': (
-                'push_service_url',
-                "public_key",
-                "auth_key",
-            )
-        }),
-        ('Other details', {
-            'fields': (
-                'created_at',
-            ),
-        }),
+        ("Identification", {"fields": ("id",)}),
+        (
+            "Push Subscription Details",
+            {
+                "fields": (
+                    "push_service_url",
+                    "public_key",
+                    "auth_key",
+                )
+            },
+        ),
+        (
+            "Other details",
+            {
+                "fields": ("created_at",),
+            },
+        ),
     )
 
     readonly_fields = [

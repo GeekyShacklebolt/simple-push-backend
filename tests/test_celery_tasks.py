@@ -12,7 +12,6 @@ from webpush.notifications.models import Notification
 
 
 class NotificationCeleryTaskTest(TestCase):
-
     def setUp(self):
         self.test_notification = G(Notification)
         self.test_notification_data = prepare_notification_data(notification_obj=self.test_notification)
