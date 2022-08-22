@@ -1,3 +1,4 @@
+import json
 
 
 def prepare_notification_data(notification_obj):
@@ -6,4 +7,8 @@ def prepare_notification_data(notification_obj):
     :param notification_obj: Notification model object
     :return: Data to display in the notification
     """
-    return f"{notification_obj.title} - {notification_obj.description}"
+    data = {
+        "title": notification_obj.title,
+        "description": notification_obj.description,
+    }
+    return json.dumps(data)
