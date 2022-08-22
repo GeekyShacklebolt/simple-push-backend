@@ -1,3 +1,7 @@
+### 22nd Aug, 2022
+
+* Add API (`POST /api/notifications/:id/send`) to trigger web push notifications.
+
 ### 19th Aug, 2022
 
 * Add API (`GET /api/notifications`) to fetch all available notifications from DB.

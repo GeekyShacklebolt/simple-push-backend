@@ -14,8 +14,7 @@ pytestmark = pytest.mark.django_db
 
 class NotificationTest(APITestCase):
 
-    @patch("webpush.notifications.api.spawn_webpush_requests_task.delay")
-    def test_create_notifications_api(self, mocked_webpush_task):
+    def test_create_notifications_api(self):
         url = reverse("notifications-list")
         data = {
             "title": "new title",
@@ -27,14 +26,12 @@ class NotificationTest(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(set(expected_keys).issubset(set(response.json().keys())))
-        mocked_webpush_task.assert_called_once()
 
         notification_obj = Notification.objects.all().first()
         self.assertEqual(notification_obj.title, data["title"])
         self.assertEqual(notification_obj.description, data["description"])
 
-    @patch("webpush.notifications.api.spawn_webpush_requests_task.delay")
-    def test_create_notifications_api_raises_bad_request(self, mocked_webpush_task):
+    def test_create_notifications_api_raises_bad_request(self):
         url = reverse("notifications-list")
         # Test invalid body returns 400 Bad Request
         data = {
@@ -43,7 +40,6 @@ class NotificationTest(APITestCase):
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        mocked_webpush_task.assert_not_called()
 
     def test_list_notifications_api(self):
         url = reverse("notifications-list")
@@ -60,3 +56,11 @@ class NotificationTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response_data), 1)
         self.assertEqual(response_data[0]["id"], str(new_notification.id))
+
+    @patch("webpush.notifications.api.spawn_webpush_requests_task.delay")
+    def test_notifications_send_api(self, mocked_webpush_requests_task):
+        test_notification = G(Notification)
+        url = reverse("notifications-send", kwargs={"pk": test_notification.id})
+        response = self.client.post(url)
+        mocked_webpush_requests_task.assert_called_once()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)

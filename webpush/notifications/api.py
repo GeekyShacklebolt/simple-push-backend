@@ -1,11 +1,11 @@
 # Third party libraries
+from rest_framework.decorators import action
 from rest_framework import viewsets, status, mixins
 from rest_framework.response import Response
 
 # Local import
 from .serializers import NotificationSerializer
 from .tasks import spawn_webpush_requests_task
-from .services import prepare_notification_data
 from .models import Notification
 
 
@@ -17,7 +17,11 @@ class NotificationViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     def create(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        notification_data = prepare_notification_data(serializer.validated_data)
-        spawn_webpush_requests_task.delay(notification_data=notification_data)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(methods=['POST'], detail=True)
+    def send(self, request, pk=None):
+        instance = self.get_object()
+        spawn_webpush_requests_task.delay(notification_id=instance.id)
+        return Response({"success": True}, status=status.HTTP_200_OK)
