@@ -1,6 +1,2 @@
-[tool.flake8]
-max-line-length = 120
-exclude = ".git,*/migrations/*,*/static/*,docs,venv,.venv"
-
 [tool.black]
 line-length = 120
