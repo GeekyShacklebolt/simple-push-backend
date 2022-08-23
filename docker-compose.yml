@@ -34,7 +34,7 @@ services:
       - "15672:15672"
   celery:
     build: .
-    command: celery -A webpush worker -l info
+    command: celery -A simple_push worker -l info
     volumes:
       - .:/code
     depends_on:

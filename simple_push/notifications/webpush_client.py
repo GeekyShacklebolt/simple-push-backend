@@ -48,15 +48,15 @@ class WebPushClient(object):
         return get_epoch_seconds(expiry)
 
     def make_web_push_request(self, subscription_id, push_subscription_data, notification_data):
-        """Method to make webpush request using pywebpush library.
+        """Method to make simple_push request using pywebpush library.
 
         :param subscription_id: ID of the user's subscription obj to track in logging.
         :param push_subscription_data: PushSubscription data unique for a subscribed user
         :param notification_data: Data to display in the notification
 
-        :return: Http Response from pywebpush.webpush module
+        :return: Http Response from pywebpush.simple_push module
 
-        :raises: WebPushRequestException if pywebpush library fails to make the webpush request due to any reason.
+        :raises: WebPushRequestException if pywebpush library fails to make the simple_push request due to any reason.
         """
 
         def get_log_ci():
@@ -64,7 +64,7 @@ class WebPushClient(object):
             return f"subscription ID '{subscription_id}' and notification data '{notification_data}'"
 
         try:
-            logger.info(msg=f"Attempting to make webpush request. {get_log_ci()}")
+            logger.info(msg=f"Attempting to make simple_push request. {get_log_ci()}")
             result = webpush(
                 push_subscription_data,
                 notification_data,
@@ -72,12 +72,12 @@ class WebPushClient(object):
                 self.vapid_auth_token_claims,
             )
             if result.ok:
-                logger.info(msg=f"Successfully made webpush request. {get_log_ci()}")
+                logger.info(msg=f"Successfully made simple_push request. {get_log_ci()}")
                 return result
 
-            logger.info(msg=f"Failed to make webpush request. '{result.text}'. {get_log_ci()}")
+            logger.info(msg=f"Failed to make simple_push request. '{result.text}'. {get_log_ci()}")
             raise WebPushRequestException(f"Web Push Request Failed. {result.text}.")
 
         except WebPushException as exc:
-            logger.info(msg=f"Failed to make webpush request due to exception {exc}. {get_log_ci()}")
+            logger.info(msg=f"Failed to make simple_push request due to exception {exc}. {get_log_ci()}")
             raise WebPushRequestException(f"Web Push Request Failed. {exc}")

@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 # Local imports
-from webpush.notifications.models import Notification
+from simple_push.notifications.models import Notification
 
 pytestmark = pytest.mark.django_db
 
@@ -56,7 +56,7 @@ class NotificationTest(APITestCase):
         self.assertEqual(len(response_data), 1)
         self.assertEqual(response_data[0]["id"], str(new_notification.id))
 
-    @patch("webpush.notifications.api.spawn_webpush_requests_task.delay")
+    @patch("simple_push.notifications.api.spawn_webpush_requests_task.delay")
     def test_notifications_send_api(self, mocked_webpush_requests_task):
         test_notification = G(Notification)
         url = reverse("notifications-send", kwargs={"pk": test_notification.id})

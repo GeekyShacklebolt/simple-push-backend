@@ -1,4 +1,4 @@
-"""webpush URL Configuration
+"""simple_push URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -18,8 +18,8 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework.urlpatterns import include
 
-from webpush.notifications.api import NotificationViewSet
-from webpush.subscriptions.api import SubscriptionViewSet
+from simple_push.notifications.api import NotificationViewSet
+from simple_push.subscriptions.api import SubscriptionViewSet
 
 default_router = DefaultRouter(trailing_slash=False)
 

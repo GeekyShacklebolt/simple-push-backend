@@ -8,8 +8,8 @@ from unittest.mock import patch, PropertyMock
 from pywebpush import WebPushException
 
 # Local imports
-from webpush.notifications.webpush_client import WebPushClient
-from webpush.notifications.webpush_exceptions import WebPushRequestException
+from simple_push.notifications.webpush_client import WebPushClient
+from simple_push.notifications.webpush_exceptions import WebPushRequestException
 
 
 class WebPushClientTest(TestCase):
@@ -35,7 +35,7 @@ class WebPushClientTest(TestCase):
         self.assertEqual(set(self.webpush_client_obj.vapid_auth_token_claims.keys()), {"exp", "sub"})
         self.assertEqual(self.webpush_client_obj.vapid_auth_token_claims["sub"], f"mailto:{self.vapid_claim_email}")
 
-    @patch("webpush.notifications.webpush_client.webpush")
+    @patch("simple_push.notifications.webpush_client.webpush")
     def test_make_web_push_request(self, mocked_webpush):
         # Mocking HTTP response from library as success
         type(mocked_webpush.return_value).ok = PropertyMock(return_value=True)
@@ -51,7 +51,7 @@ class WebPushClientTest(TestCase):
             self.webpush_client_obj.vapid_auth_token_claims,
         )
 
-    @patch("webpush.notifications.webpush_client.webpush", side_effect=WebPushException(message="Error!"))
+    @patch("simple_push.notifications.webpush_client.webpush", side_effect=WebPushException(message="Error!"))
     def test_make_web_push_request_catches_exception(self, mocked_webpush):
 
         with pytest.raises(WebPushRequestException) as custom_exc:
@@ -72,7 +72,7 @@ class WebPushClientTest(TestCase):
             self.webpush_client_obj.vapid_auth_token_claims,
         )
 
-    @patch("webpush.notifications.webpush_client.webpush")
+    @patch("simple_push.notifications.webpush_client.webpush")
     def test_make_web_push_request_raises_custom_exception_on_failure(self, mocked_webpush):
         # Mocking HTTP response from library as not OK
         type(mocked_webpush.return_value).ok = PropertyMock(return_value=False)
