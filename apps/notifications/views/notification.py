@@ -4,9 +4,9 @@ from rest_framework import viewsets, status, mixins
 from rest_framework.response import Response
 
 # Local import
-from .serializers import NotificationSerializer
-from .tasks import spawn_webpush_requests_task
-from .models import Notification
+from apps.notifications.serializers import NotificationSerializer
+from apps.notifications.tasks import spawn_webpush_requests_task
+from apps.notifications.models import Notification
 
 
 class NotificationViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):

@@ -1,7 +1,7 @@
 from rest_framework import viewsets, mixins
 
-from .serializers import SubscriptionSerializer
-from .models import Subscription
+from apps.subscriptions.serializers import SubscriptionSerializer
+from apps.subscriptions.models import Subscription
 
 
 class SubscriptionViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):

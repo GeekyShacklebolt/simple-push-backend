@@ -7,7 +7,7 @@ from pywebpush import webpush
 from pywebpush import WebPushException
 
 # Local imports
-from .webpush_exceptions import WebPushRequestException
+from apps.notifications.common.exceptions import WebPushRequestException
 
 logger = logging.getLogger(__name__)
 

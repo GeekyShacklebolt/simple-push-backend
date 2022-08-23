@@ -56,7 +56,7 @@ class NotificationTest(APITestCase):
         self.assertEqual(len(response_data), 1)
         self.assertEqual(response_data[0]["id"], str(new_notification.id))
 
-    @patch("apps.notifications.api.spawn_webpush_requests_task.delay")
+    @patch("apps.notifications.views.notification.spawn_webpush_requests_task.delay")
     def test_notifications_send_api(self, mocked_webpush_requests_task):
         test_notification = G(Notification)
         url = reverse("notifications-send", kwargs={"pk": test_notification.id})

@@ -5,7 +5,7 @@ from unittest.mock import patch, call
 
 # Local imports
 from apps.notifications import tasks
-from apps.subscriptions.services import prepare_push_subscription_data
+from apps.subscriptions.api_services.subscription_service import prepare_push_subscription_data
 from apps.notifications.services import prepare_notification_data
 from apps.subscriptions.models import Subscription
 from apps.notifications.models import Notification
@@ -29,7 +29,7 @@ class NotificationCeleryTaskTest(TestCase):
         ]
         mocked_trigger_webpush_celery_task.assert_has_calls(calls, any_order=True)
 
-    @patch("apps.notifications.tasks.webpush_client.make_web_push_request")
+    @patch("apps.notifications.tasks.make_webpush_requests_task.webpush_client.make_web_push_request")
     def test_trigger_webpush_request_task(self, mocked_web_push_request):
         push_subscription_data = prepare_push_subscription_data(subscription_obj=self.subscription1)
         tasks.trigger_webpush_request_task(

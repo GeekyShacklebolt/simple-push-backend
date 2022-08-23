@@ -5,8 +5,8 @@ from django.conf import settings
 # Local imports
 from apps.subscriptions.models import Subscription
 from apps.notifications.models import Notification
-from apps.subscriptions.services import prepare_push_subscription_data
-from apps.notifications.webpush_client import WebPushClient
+from apps.subscriptions.api_services.subscription_service import prepare_push_subscription_data
+from apps.notifications.services.webpush_client import WebPushClient
 from apps.notifications.services import prepare_notification_data
 
 webpush_client = WebPushClient(

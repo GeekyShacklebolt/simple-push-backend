@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # Local imports
-from .models import Notification
+from apps.notifications.models import Notification
 
 
 class NotificationSerializer(serializers.ModelSerializer):

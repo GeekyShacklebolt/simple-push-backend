@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Subscription
+from apps.subscriptions.models import Subscription
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):

@@ -4,7 +4,7 @@ from django_dynamic_fixture import G
 
 # Local imports
 from apps.subscriptions.models import Subscription
-from apps.subscriptions.services import prepare_push_subscription_data
+from apps.subscriptions.api_services.subscription_service import prepare_push_subscription_data
 
 
 class SubscriptionServiceTest(TestCase):
