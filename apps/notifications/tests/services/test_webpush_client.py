@@ -65,7 +65,7 @@ class WebPushClientTest(TestCase):
         self.assertIsNotNone(custom_exc)
         assert "Web Push Request Failed." in str(custom_exc.value)
 
-        mocked_webpush.asser_called_once_with(
+        mocked_webpush.assert_called_once_with(
             self.push_subscription_data,
             self.notification_data,
             self.vapid_private_key,
@@ -85,7 +85,7 @@ class WebPushClientTest(TestCase):
         self.assertIsNotNone(custom_exc)
         assert "Web Push Request Failed." in str(custom_exc)
 
-        mocked_webpush.asser_called_once_with(
+        mocked_webpush.assert_called_once_with(
             self.push_subscription_data,
             self.notification_data,
             self.vapid_private_key,
