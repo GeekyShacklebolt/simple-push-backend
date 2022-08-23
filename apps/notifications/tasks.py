@@ -3,11 +3,11 @@ import celery
 from django.conf import settings
 
 # Local imports
-from simple_push.subscriptions.models import Subscription
-from simple_push.notifications.models import Notification
-from simple_push.subscriptions.services import prepare_push_subscription_data
-from simple_push.notifications.webpush_client import WebPushClient
-from simple_push.notifications.services import prepare_notification_data
+from apps.subscriptions.models import Subscription
+from apps.notifications.models import Notification
+from apps.subscriptions.services import prepare_push_subscription_data
+from apps.notifications.webpush_client import WebPushClient
+from apps.notifications.services import prepare_notification_data
 
 webpush_client = WebPushClient(
     vapid_private_key=settings.VAPID["PRIVATE_KEY"],

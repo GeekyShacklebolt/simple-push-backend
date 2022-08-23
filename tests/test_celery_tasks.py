@@ -4,11 +4,11 @@ from django_dynamic_fixture import G
 from unittest.mock import patch, call
 
 # Local imports
-from simple_push.notifications import tasks
-from simple_push.subscriptions.services import prepare_push_subscription_data
-from simple_push.notifications.services import prepare_notification_data
-from simple_push.subscriptions.models import Subscription
-from simple_push.notifications.models import Notification
+from apps.notifications import tasks
+from apps.subscriptions.services import prepare_push_subscription_data
+from apps.notifications.services import prepare_notification_data
+from apps.subscriptions.models import Subscription
+from apps.notifications.models import Notification
 
 
 class NotificationCeleryTaskTest(TestCase):
@@ -18,7 +18,7 @@ class NotificationCeleryTaskTest(TestCase):
         self.subscription1 = G(Subscription)
         self.subscription2 = G(Subscription)
 
-    @patch("simple_push.notifications.tasks.trigger_webpush_request_task.delay")
+    @patch("apps.notifications.tasks.trigger_webpush_request_task.delay")
     def test_spawn_webpush_requests_task(self, mocked_trigger_webpush_celery_task):
         tasks.spawn_webpush_requests_task(notification_id=self.test_notification.id)
         assert mocked_trigger_webpush_celery_task.called
@@ -29,7 +29,7 @@ class NotificationCeleryTaskTest(TestCase):
         ]
         mocked_trigger_webpush_celery_task.assert_has_calls(calls, any_order=True)
 
-    @patch("simple_push.notifications.tasks.webpush_client.make_web_push_request")
+    @patch("apps.notifications.tasks.webpush_client.make_web_push_request")
     def test_trigger_webpush_request_task(self, mocked_web_push_request):
         push_subscription_data = prepare_push_subscription_data(subscription_obj=self.subscription1)
         tasks.trigger_webpush_request_task(

@@ -3,8 +3,8 @@ from django.test import TestCase
 from django_dynamic_fixture import G
 
 # Local imports
-from simple_push.subscriptions.models import Subscription
-from simple_push.subscriptions.services import prepare_push_subscription_data
+from apps.subscriptions.models import Subscription
+from apps.subscriptions.services import prepare_push_subscription_data
 
 
 class SubscriptionServiceTest(TestCase):

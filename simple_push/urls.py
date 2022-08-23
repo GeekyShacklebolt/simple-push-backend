@@ -18,8 +18,8 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework.urlpatterns import include
 
-from simple_push.notifications.api import NotificationViewSet
-from simple_push.subscriptions.api import SubscriptionViewSet
+from apps.notifications.api import NotificationViewSet
+from apps.subscriptions.api import SubscriptionViewSet
 
 default_router = DefaultRouter(trailing_slash=False)
 

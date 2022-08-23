@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "django_extensions",
-    "simple_push.notifications",
-    "simple_push.subscriptions",
+    "apps.notifications",
+    "apps.subscriptions",
     "corsheaders",
 ]
 

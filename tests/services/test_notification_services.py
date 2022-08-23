@@ -3,8 +3,8 @@ from django.test import TestCase
 from django_dynamic_fixture import G
 
 # Local imports
-from simple_push.notifications.models import Notification
-from simple_push.notifications.services import prepare_notification_data
+from apps.notifications.models import Notification
+from apps.notifications.services import prepare_notification_data
 
 
 class NotificationServiceTest(TestCase):
