@@ -13,7 +13,6 @@ pytestmark = pytest.mark.django_db
 
 
 class NotificationTest(APITestCase):
-
     def test_create_notifications_api(self):
         url = reverse("notifications-list")
         data = {
@@ -23,7 +22,7 @@ class NotificationTest(APITestCase):
         expected_keys = list(data.keys())
         expected_keys.extend(["id", "created_at"])
 
-        response = self.client.post(url, data, format='json')
+        response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(set(expected_keys).issubset(set(response.json().keys())))
 
@@ -38,7 +37,7 @@ class NotificationTest(APITestCase):
             "title": None,  # Title can not be None
             "description": "test description",
         }
-        response = self.client.post(url, data, format='json')
+        response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_list_notifications_api(self):

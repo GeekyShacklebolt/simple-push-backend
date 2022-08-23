@@ -29,6 +29,6 @@ default_router.register("api/subscriptions", viewset=SubscriptionViewSet, basena
 urlpatterns = default_router.urls
 
 urlpatterns += [
-    path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
+    path("admin/", admin.site.urls),
+    path("api-auth/", include("rest_framework.urls")),
 ]

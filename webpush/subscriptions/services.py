@@ -1,5 +1,3 @@
-
-
 def prepare_push_subscription_data(subscription_obj):
     """
     Method to prepare push subscription data from subscription model object.
@@ -12,6 +10,6 @@ def prepare_push_subscription_data(subscription_obj):
         "keys": {
             "auth": subscription_obj.auth_key,
             "p256dh": subscription_obj.public_key,
-        }
+        },
     }
     return push_subscription_data

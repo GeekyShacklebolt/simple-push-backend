@@ -16,10 +16,10 @@ class WebPushClient(object):
     """Class wraps pywebpush library."""
 
     def __init__(
-            self,
-            vapid_private_key,
-            vapid_claim_email,
-            notification_expire_after_mins,
+        self,
+        vapid_private_key,
+        vapid_claim_email,
+        notification_expire_after_mins,
     ):
         self.vapid_private_key = vapid_private_key
         self.vapid_claim_email = vapid_claim_email
@@ -30,10 +30,7 @@ class WebPushClient(object):
     def vapid_auth_token_claims(self):
         """The audience claim `aud` is not set here, because pywebpush library extracts that out on its own
         using the push service endpoint's URL coming in the push subscription data."""
-        return {
-            'sub': f'mailto:{self.vapid_claim_email}',
-            'exp': self.vapid_claim_exp
-        }
+        return {"sub": f"mailto:{self.vapid_claim_email}", "exp": self.vapid_claim_exp}
 
     def _compute_vapid_auth_token_expiry(self):
         """Method to compute VAPID auth token expiry claim.

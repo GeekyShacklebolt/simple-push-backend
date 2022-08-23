@@ -8,9 +8,9 @@ from webpush.subscriptions.services import prepare_push_subscription_data
 
 
 class SubscriptionServiceTest(TestCase):
-    push_service_url="test_url",
-    public_key="test_public_key",
-    auth_key="test_auth_key",
+    push_service_url = ("test_url",)
+    public_key = ("test_public_key",)
+    auth_key = ("test_auth_key",)
 
     def setUp(self):
         self.subscription1 = G(
@@ -27,6 +27,6 @@ class SubscriptionServiceTest(TestCase):
             "keys": {
                 "p256dh": self.public_key,
                 "auth": self.auth_key,
-            }
+            },
         }
         self.assertEqual(actual_result, expected_result)

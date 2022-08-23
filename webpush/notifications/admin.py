@@ -5,32 +5,32 @@ from .models import Notification
 
 class SubscriptionAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Identification', {
-            'fields': (
-                'id',
-            )
-        }),
-        ('Push Subscription Details', {
-            'fields': (
-                'title',
-                'description',
-            )
-        }),
-        ('Other details', {
-            'fields': (
-                'created_at',
-            ),
-        }),
+        ("Identification", {"fields": ("id",)}),
+        (
+            "Push Subscription Details",
+            {
+                "fields": (
+                    "title",
+                    "description",
+                )
+            },
+        ),
+        (
+            "Other details",
+            {
+                "fields": ("created_at",),
+            },
+        ),
     )
 
     readonly_fields = [
-        'id',
-        'created_at',
+        "id",
+        "created_at",
     ]
 
     list_display = [
-        'id',
-        'created_at',
+        "id",
+        "created_at",
     ]
 
 

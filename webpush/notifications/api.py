@@ -20,7 +20,7 @@ class NotificationViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    @action(methods=['POST'], detail=True)
+    @action(methods=["POST"], detail=True)
     def send(self, request, pk=None):
         instance = self.get_object()
         spawn_webpush_requests_task.delay(notification_id=instance.id)

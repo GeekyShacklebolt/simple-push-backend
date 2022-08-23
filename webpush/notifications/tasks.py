@@ -24,7 +24,7 @@ def spawn_webpush_requests_task(notification_id):
     """
     notification = Notification.objects.get(id=notification_id)
     notification_data = prepare_notification_data(notification_obj=notification)
-    subscription_ids_qs = Subscription.objects.values_list('id', flat=True)
+    subscription_ids_qs = Subscription.objects.values_list("id", flat=True)
     for subscription_id in subscription_ids_qs:
         trigger_webpush_request_task.delay(notification_data, subscription_id)
 
