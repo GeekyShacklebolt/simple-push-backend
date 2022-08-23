@@ -5,9 +5,9 @@ from django.conf import settings
 # Local imports
 from apps.subscriptions.models import Subscription
 from apps.notifications.models import Notification
-from apps.subscriptions.api_services.subscription_service import prepare_push_subscription_data
-from apps.notifications.services.webpush_client import WebPushClient
-from apps.notifications.services import prepare_notification_data
+from apps.subscriptions.api_services.subscription import SubscriptionAPIServices
+from apps.notifications.utils.webpush_client import WebPushClient
+from apps.notifications.services import NotificationService
 
 webpush_client = WebPushClient(
     vapid_private_key=settings.VAPID["PRIVATE_KEY"],
@@ -23,7 +23,7 @@ def spawn_webpush_requests_task(notification_id):
     to make individual simple_push requests for each subscriber.
     """
     notification = Notification.objects.get(id=notification_id)
-    notification_data = prepare_notification_data(notification_obj=notification)
+    notification_data = NotificationService.prepare_and_get_notification_data(notification_obj=notification)
     subscription_ids_qs = Subscription.objects.values_list("id", flat=True)
     for subscription_id in subscription_ids_qs:
         trigger_webpush_request_task.delay(notification_data, subscription_id)
@@ -35,6 +35,6 @@ def trigger_webpush_request_task(notification_data, subscription_id):
     subscription = Subscription.objects.get(id=subscription_id)
     webpush_client.make_web_push_request(
         subscription_id=subscription_id,
-        push_subscription_data=prepare_push_subscription_data(subscription_obj=subscription),
+        push_subscription_data=SubscriptionAPIServices.prepare_and_get_push_subscription_data(subscription_obj=subscription),
         notification_data=notification_data,
     )

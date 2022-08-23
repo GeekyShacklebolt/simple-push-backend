@@ -4,7 +4,7 @@ from django_dynamic_fixture import G
 
 # Local imports
 from apps.subscriptions.models import Subscription
-from apps.subscriptions.api_services.subscription_service import prepare_push_subscription_data
+from apps.subscriptions.api_services.subscription import SubscriptionAPIServices
 
 
 class SubscriptionServiceTest(TestCase):
@@ -21,7 +21,7 @@ class SubscriptionServiceTest(TestCase):
         )
 
     def test_prepare_push_subscription_data(self):
-        actual_result = prepare_push_subscription_data(subscription_obj=self.subscription1)
+        actual_result = SubscriptionAPIServices.prepare_and_get_push_subscription_data(subscription_obj=self.subscription1)
         expected_result = {
             "endpoint": self.push_service_url,
             "keys": {

@@ -4,7 +4,7 @@ from django_dynamic_fixture import G
 
 # Local imports
 from apps.notifications.models import Notification
-from apps.notifications.services import prepare_notification_data
+from apps.notifications.services import NotificationService
 
 
 class NotificationServiceTest(TestCase):
@@ -19,6 +19,6 @@ class NotificationServiceTest(TestCase):
         )
 
     def test_prepare_notification_data(self):
-        actual_result = prepare_notification_data(notification_obj=self.subscription1)
+        actual_result = NotificationService.prepare_and_get_notification_data(notification_obj=self.subscription1)
         expected_result = f'{{"title": "{self.title}", "description": "{self.description}"}}'
         self.assertEqual(actual_result, expected_result)

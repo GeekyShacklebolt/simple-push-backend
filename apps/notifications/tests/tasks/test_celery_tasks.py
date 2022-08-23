@@ -5,8 +5,8 @@ from unittest.mock import patch, call
 
 # Local imports
 from apps.notifications import tasks
-from apps.subscriptions.api_services.subscription_service import prepare_push_subscription_data
-from apps.notifications.services import prepare_notification_data
+from apps.subscriptions.api_services.subscription import SubscriptionAPIServices
+from apps.notifications.services import NotificationService
 from apps.subscriptions.models import Subscription
 from apps.notifications.models import Notification
 
@@ -14,7 +14,7 @@ from apps.notifications.models import Notification
 class NotificationCeleryTaskTest(TestCase):
     def setUp(self):
         self.test_notification = G(Notification)
-        self.test_notification_data = prepare_notification_data(notification_obj=self.test_notification)
+        self.test_notification_data = NotificationService.prepare_and_get_notification_data(notification_obj=self.test_notification)
         self.subscription1 = G(Subscription)
         self.subscription2 = G(Subscription)
 
@@ -31,7 +31,7 @@ class NotificationCeleryTaskTest(TestCase):
 
     @patch("apps.notifications.tasks.make_webpush_requests_task.webpush_client.make_web_push_request")
     def test_trigger_webpush_request_task(self, mocked_web_push_request):
-        push_subscription_data = prepare_push_subscription_data(subscription_obj=self.subscription1)
+        push_subscription_data = SubscriptionAPIServices.prepare_and_get_push_subscription_data(subscription_obj=self.subscription1)
         tasks.trigger_webpush_request_task(
             notification_data=self.test_notification_data,
             subscription_id=self.subscription1.id,
