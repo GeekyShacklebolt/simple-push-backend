@@ -4,13 +4,13 @@ from django_dynamic_fixture import G
 
 # Local imports
 from apps.subscriptions.models import Subscription
-from apps.subscriptions.api_services.subscription import SubscriptionAPIServices
+from apps.subscriptions.api_services.subscription import SubscriptionAPIService
 
 
 class SubscriptionServiceTest(TestCase):
-    push_service_url = ("test_url",)
-    public_key = ("test_public_key",)
-    auth_key = ("test_auth_key",)
+    push_service_url = "test_url"
+    public_key = "test_public_key"
+    auth_key = "test_auth_key"
 
     def setUp(self):
         self.subscription1 = G(
@@ -21,7 +21,7 @@ class SubscriptionServiceTest(TestCase):
         )
 
     def test_prepare_push_subscription_data(self):
-        actual_result = SubscriptionAPIServices.prepare_and_get_push_subscription_data(subscription_obj=self.subscription1)
+        actual_result = SubscriptionAPIService.get_push_subscription_data(subscription_id=self.subscription1.id)
         expected_result = {
             "endpoint": self.push_service_url,
             "keys": {

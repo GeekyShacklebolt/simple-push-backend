@@ -1,40 +1,11 @@
 # Third party libraries
 import celery
-from django.conf import settings
 
 # Local imports
-from apps.subscriptions.models import Subscription
-from apps.notifications.models import Notification
-from apps.subscriptions.api_services.subscription import SubscriptionAPIServices
-from apps.notifications.utils.webpush_library_wrapper import WebPushLibraryWrapper
-from apps.notifications.services import NotificationService
-
-webpush_client = WebPushLibraryWrapper(
-    vapid_private_key=settings.VAPID["PRIVATE_KEY"],
-    vapid_claim_email=settings.VAPID["EMAIL"],
-    notification_expire_after_mins=settings.NOTIFICATION_EXPIRE_AFTER_MINS,
-)
-
-
-@celery.shared_task()
-def spawn_webpush_requests_task(notification_id):
-    """
-    Task to trigger simple_push requests to all the subscribers. This is the Parent task that spawns multiple child tasks
-    to make individual simple_push requests for each subscriber.
-    """
-    notification = Notification.objects.get(id=notification_id)
-    notification_data = NotificationService.prepare_and_get_notification_data(notification_obj=notification)
-    subscription_ids_qs = Subscription.objects.values_list("id", flat=True)
-    for subscription_id in subscription_ids_qs:
-        trigger_webpush_request_task.delay(notification_data, subscription_id)
+from apps.notifications.services.webpush_service import WebPushService
 
 
 @celery.shared_task()
 def trigger_webpush_request_task(notification_data, subscription_id):
-    """Task to trigger simple_push request for an individual subscriber."""
-    subscription = Subscription.objects.get(id=subscription_id)
-    webpush_client.make_web_push_request(
-        subscription_id=subscription_id,
-        push_subscription_data=SubscriptionAPIServices.prepare_and_get_push_subscription_data(subscription_obj=subscription),
-        notification_data=notification_data,
-    )
+    """Task to trigger webpush request for an individual subscriber."""
+    WebPushService.send_webpush_request(subscription_id=subscription_id, notification_data=notification_data)

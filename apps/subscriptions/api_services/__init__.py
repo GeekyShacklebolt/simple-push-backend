@@ -1,1 +1,1 @@
-from .subscription import SubscriptionAPIServices
+from .subscription import SubscriptionAPIService

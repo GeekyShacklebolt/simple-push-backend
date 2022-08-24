@@ -1,2 +1,2 @@
 from .notification import NotificationService
-from .webpush_service import WebPushNotificationService
+from .webpush_service import WebPushService

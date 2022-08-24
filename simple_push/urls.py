@@ -15,20 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rest_framework.routers import DefaultRouter
 from rest_framework.urlpatterns import include
 
-from apps.notifications.views.notification import NotificationViewSet
-from apps.subscriptions.views.subscription import SubscriptionViewSet
 
-default_router = DefaultRouter(trailing_slash=False)
-
-default_router.register("api/notifications", viewset=NotificationViewSet, basename="notifications")
-default_router.register("api/subscriptions", viewset=SubscriptionViewSet, basename="subscriptions")
-
-urlpatterns = default_router.urls
-
-urlpatterns += [
+urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
+    path("api/", include("apps.notifications.urls")),
+    path("api/", include("apps.subscriptions.urls")),
 ]

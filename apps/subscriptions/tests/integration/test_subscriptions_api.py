@@ -5,7 +5,7 @@ from rest_framework.test import APITestCase
 
 class SubscriptionTest(APITestCase):
     def test_create_subscription_api(self):
-        url = reverse("subscriptions-list")
+        url = reverse("subscriptions")
         data = {
             "push_service_url": "https://some.pushservice.com/test",
             "public_key": "BIPUL12DLfytvTajnryr2PRdAgXS3HGKiLqndGcJGabyhHheJYlNGCeXl1dn18gSJ1WAkAPIxr4gK0_dQds4yiI=",
