@@ -13,15 +13,15 @@ from apps.notifications.common.exceptions import WebPushRequestException
 
 
 class WebPushLibraryWrapperTest(TestCase):
-    vapid_private_key = "fake_private_key"
-    vapid_claim_email = "test@email.com"
-    notification_expire_after_mins = 1
-
-    subscription_id = uuid.uuid4()
-    push_subscription_data = "example subscription data"
-    notification_data = "title"
-
     def setUp(self):
+        self.vapid_private_key = "fake_private_key"
+        self.vapid_claim_email = "test@email.com"
+        self.notification_expire_after_mins = 1
+
+        self.subscription_id = uuid.uuid4()
+        self.push_subscription_data = "example subscription data"
+        self.notification_data = "title"
+
         self.webpush_request = WebPushRequest(
             vapid_private_key=self.vapid_private_key,
             vapid_claim_email=self.vapid_claim_email,
