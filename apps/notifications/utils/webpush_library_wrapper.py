@@ -12,7 +12,7 @@ from apps.notifications.common.exceptions import WebPushRequestException
 logger = logging.getLogger(__name__)
 
 
-class WebPushClient(object):
+class WebPushLibraryWrapper(object):
     """Class wraps pywebpush library."""
 
     def __init__(

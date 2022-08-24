@@ -1,1 +1,1 @@
-from .webpush_client import WebPushClient
+from .webpush_library_wrapper import WebPushLibraryWrapper

@@ -6,10 +6,10 @@ from django.conf import settings
 from apps.subscriptions.models import Subscription
 from apps.notifications.models import Notification
 from apps.subscriptions.api_services.subscription import SubscriptionAPIServices
-from apps.notifications.utils.webpush_client import WebPushClient
+from apps.notifications.utils.webpush_library_wrapper import WebPushLibraryWrapper
 from apps.notifications.services import NotificationService
 
-webpush_client = WebPushClient(
+webpush_client = WebPushLibraryWrapper(
     vapid_private_key=settings.VAPID["PRIVATE_KEY"],
     vapid_claim_email=settings.VAPID["EMAIL"],
     notification_expire_after_mins=settings.NOTIFICATION_EXPIRE_AFTER_MINS,
