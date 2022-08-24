@@ -10,8 +10,8 @@ from apps.subscriptions.api_services import SubscriptionAPIService
 class NotificationService:
 
     @classmethod
-    def prepare_and_get_notification_data(cls, notification_obj):
-        """Method to prepare data for notification to display
+    def prepare_notification_data(cls, notification_obj):
+        """Service to prepare data for notification to display
 
         :param notification_obj: Notification model object
         :return: Data to display in the notification
@@ -24,7 +24,7 @@ class NotificationService:
 
     @classmethod
     def get_notification_by_id(cls, notification_id):
-        """Method to return Notification model object for the given ID
+        """Service to return Notification model object for the given ID
 
         :param notification_id: ID of the Notification model object
         :return: Notification model object
@@ -41,10 +41,10 @@ class NotificationService:
         """
 
         notification = cls.get_notification_by_id(notification_id=notification_id)
-        notification_data = cls.prepare_and_get_notification_data(notification_obj=notification)
+        notification_data = cls.prepare_notification_data(notification_obj=notification)
         subscription_ids_qs = SubscriptionAPIService.get_subscribers_ids()
         for subscription_id in subscription_ids_qs:
-            trigger_webpush_request_task.delay(notification_data, subscription_id)  ## async apply
+            trigger_webpush_request_task.delay(notification_data, subscription_id)
 
     @classmethod
     def create_notification(cls, data):

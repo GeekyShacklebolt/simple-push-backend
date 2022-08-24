@@ -14,7 +14,7 @@ from apps.notifications.models import Notification
 class NotificationCeleryTaskTest(TestCase):
     def setUp(self):
         self.test_notification = G(Notification)
-        self.test_notification_data = NotificationService.prepare_and_get_notification_data(notification_obj=self.test_notification)
+        self.test_notification_data = NotificationService.prepare_notification_data(notification_obj=self.test_notification)
         self.subscription1 = G(Subscription)
         self.subscription2 = G(Subscription)
         self.push_subscription_data = SubscriptionAPIService.get_push_subscription_data(

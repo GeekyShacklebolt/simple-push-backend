@@ -19,7 +19,7 @@ class NotificationServiceTest(TestCase):
             title=self.title,
             description=self.description,
         )
-        self.test_notification_data = NotificationService.prepare_and_get_notification_data(
+        self.test_notification_data = NotificationService.prepare_notification_data(
             notification_obj=self.test_notification
         )
         self.test_subscription = G(Subscription)
