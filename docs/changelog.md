@@ -1,3 +1,10 @@
+### 24th Aug, 2022
+
+* Add missing tests
+* Replace viewsets with APIView
+* Create class based services
+* Abstract out services
+
 ### 23rd Aug, 2022
 
 * Refactored directory structure
